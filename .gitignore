@@ -1,0 +1,101 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+myenv/
+.venv
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Cache
+.cache/
+*.cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Temporal
+.temporal/
+
+# Ollama Models (already stored on F: drive)
+*.bin
+*.safetensors
+
+# Sensitive Data
+credentials.json
+*.key
+*.pem
+secrets/
+
+# MCP Server State
+mcp_servers/**/.state
+mcp_servers/**/.cache
+
+# Specifications (user-generated)
+specifications/*/
+!specifications/templates/
+
+# Test Output
+test-results/
+.pytest_cache/
+
+# Build Artifacts
+*.egg-info/
+dist/
+build/
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Temporary Files
+*.tmp
+*.temp
+.tmp/
+
+# Project Storage
+projects/

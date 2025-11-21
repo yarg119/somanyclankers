@@ -1,0 +1,85 @@
+# Core Dependencies
+python>=3.10
+
+# AI Agent Frameworks
+crewai>=0.70.0
+crewai-tools>=0.12.0
+
+# Model Context Protocol
+mcp>=1.0.0
+
+# LLM Providers
+anthropic>=0.40.0
+openai>=1.50.0
+ollama>=0.4.0
+
+# Spec-kit (install from GitHub)
+# Install via: uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+
+# Configuration Management
+pyyaml>=6.0.2
+python-dotenv>=1.0.1
+pydantic>=2.9.0
+pydantic-settings>=2.6.0
+
+# Workflow Orchestration (optional but recommended)
+temporalio>=1.7.0
+
+# Code Analysis & Manipulation
+aider-chat>=0.60.0
+tree-sitter>=0.22.0
+rope>=1.13.0
+
+# Testing & Validation
+pytest>=8.3.0
+pytest-asyncio>=0.24.0
+pytest-cov>=6.0.0
+coverage>=7.6.0
+
+# Git Integration
+GitPython>=3.1.43
+PyGithub>=2.4.0
+
+# Utilities
+requests>=2.32.0
+httpx>=0.27.0
+rich>=13.9.0
+typer>=0.12.0
+questionary>=2.0.0
+click>=8.1.7
+colorama>=0.4.6
+
+# Logging & Monitoring
+loguru>=0.7.2
+prometheus-client>=0.21.0
+
+# Vector Database (for RAG/memory)
+chromadb>=0.5.0
+sentence-transformers>=3.1.0
+
+# Data Processing
+pandas>=2.2.0
+numpy>=2.1.0
+
+# Async Support
+asyncio>=3.4.3
+aiohttp>=3.10.0
+aiofiles>=24.1.0
+
+# Type Checking
+mypy>=1.13.0
+types-PyYAML>=6.0.12
+types-requests>=2.32.0
+
+# Code Quality
+black>=24.10.0
+flake8>=7.1.0
+isort>=5.13.0
+pylint>=3.3.0
+
+# Security
+bandit>=1.7.10
+
+# Documentation
+mkdocs>=1.6.0
+mkdocs-material>=9.5.0

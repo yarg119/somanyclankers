@@ -1,0 +1,1 @@
+{\n  "name": "my-application",\n  "version": "1.0.0",\n  "description": "My complete application built with Node.js and Express.",\n  "main": "src/app.js",\n  "scripts": {\n    "start": "node src/app.js",\n    "test": "echo \\"Error: no test specified\\" && exit 1"\n  },\n  "dependencies": {\n    "express": "^4.17.1",\n    "mongoose": "^5.9.7",\n    "winston": "^3.2.1"\n  }\n}

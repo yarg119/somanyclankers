@@ -1,0 +1,76 @@
+# MCP Server Configuration
+# Configure Model Context Protocol servers that provide tools and resources
+
+mcp_servers:
+  specification:
+    enabled: true
+    command: "python"
+    args: ["mcp_servers/specification/server.py"]
+    description: "Manages project specifications using spec-kit"
+    tools:
+      - create_specification
+      - refine_specification
+      - validate_specification
+      - get_implementation_plan
+    resources:
+      - specifications/*
+      - constitution
+      - task_lists/*
+    auto_start: true
+
+  code_editor:
+    enabled: true
+    command: "python"
+    args: ["mcp_servers/code_editor/server.py"]
+    description: "Code manipulation and editing (integrates Aider)"
+    tools:
+      - edit_code
+      - refactor_code
+      - add_tests
+      - fix_linting_errors
+      - search_codebase
+    resources:
+      - codebase_map
+      - file_contents/*
+      - git_history
+    auto_start: true
+
+  testing:
+    enabled: true
+    command: "python"
+    args: ["mcp_servers/testing/server.py"]
+    description: "Testing and validation"
+    tools:
+      - run_unit_tests
+      - run_integration_tests
+      - check_code_coverage
+      - validate_against_spec
+    resources:
+      - test_results
+      - coverage_report
+    auto_start: true
+
+  github:
+    enabled: true
+    command: "python"
+    args: ["mcp_servers/github/server.py"]
+    description: "GitHub integration for issues and PRs"
+    tools:
+      - create_issue
+      - create_pull_request
+      - review_pr
+      - manage_labels
+    resources:
+      - repository_info
+      - issues/*
+      - pull_requests/*
+    auto_start: false  # Start on demand
+    requires_env:
+      - GITHUB_TOKEN
+
+# MCP server behavior
+server_settings:
+  startup_timeout: 30
+  health_check_interval: 60
+  auto_restart: true
+  max_restart_attempts: 3

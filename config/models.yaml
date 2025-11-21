@@ -1,0 +1,87 @@
+# LLM Model Configuration
+# Configure local and cloud-based language models
+
+local_models:
+  deepseek-coder-v2:
+    provider: "ollama"
+    endpoint: "http://localhost:11434"
+    model_name: "deepseek-coder-v2:16b"
+    max_tokens: 4096
+    context_window: 16384
+    cost_per_token: 0.0  # Local models are free
+    enabled: true
+    description: "Primary local model for coding tasks"
+
+cloud_models:
+  claude-sonnet-4:
+    provider: "anthropic"
+    model_name: "claude-sonnet-4-5-20250929"
+    api_key_env: "ANTHROPIC_API_KEY"
+    max_tokens: 8192
+    context_window: 200000
+    cost_per_1m_input_tokens: 3.00
+    cost_per_1m_output_tokens: 15.00
+    enabled: true
+    description: "Latest Claude Sonnet 4.5 - balanced model for complex reasoning"
+
+  claude-opus-4:
+    provider: "anthropic"
+    model_name: "claude-opus-4-1-20250805"
+    api_key_env: "ANTHROPIC_API_KEY"
+    max_tokens: 4096
+    context_window: 200000
+    cost_per_1m_input_tokens: 15.00
+    cost_per_1m_output_tokens: 75.00
+    enabled: true
+    description: "Claude Opus 4.1 - premium model for critical decisions"
+
+  claude-haiku-4:
+    provider: "anthropic"
+    model_name: "claude-haiku-4-5-20251001"
+    api_key_env: "ANTHROPIC_API_KEY"
+    max_tokens: 4096
+    context_window: 200000
+    cost_per_1m_input_tokens: 0.25
+    cost_per_1m_output_tokens: 1.25
+    enabled: true
+    description: "Claude 3 Haiku - fast, affordable model for simple tasks"
+
+  gemini-2.0-flash-exp:
+    provider: "google"
+    model_name: "gemini-2.0-flash-exp"
+    api_key_env: "GOOGLE_API_KEY"
+    max_tokens: 8192
+    context_window: 1000000
+    cost_per_1m_input_tokens: 0.00  # Free tier
+    cost_per_1m_output_tokens: 0.00
+    enabled: true
+    description: "Free Google Gemini 2.0 experimental model"
+
+  gemini-1.5-pro:
+    provider: "google"
+    model_name: "gemini-1.5-pro"
+    api_key_env: "GOOGLE_API_KEY"
+    max_tokens: 8192
+    context_window: 2000000
+    cost_per_1m_input_tokens: 1.25
+    cost_per_1m_output_tokens: 5.00
+    enabled: true
+    description: "Google Gemini 1.5 Pro for complex tasks"
+
+  gemini-1.5-flash:
+    provider: "google"
+    model_name: "gemini-1.5-flash"
+    api_key_env: "GOOGLE_API_KEY"
+    max_tokens: 8192
+    context_window: 1000000
+    cost_per_1m_input_tokens: 0.075
+    cost_per_1m_output_tokens: 0.30
+    enabled: true
+    description: "Fast, affordable Google Gemini model"
+
+# Model routing rules
+routing:
+  prefer_local: true  # Always try local models first
+  local_fallback: true  # Fall back to local if cloud fails
+  cost_optimization: true  # Route based on cost efficiency
+  quality_threshold: 0.8  # Minimum quality score (0-1)

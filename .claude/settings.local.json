@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wsl -d archlinux bash -c \"cd /mnt/c/Users/amazi/Desktop/automated-coding-agent-network && tail -50 workflow_output.log | grep -A 5 -B 5 -E ''Aider|AIDER|Initializing coder''\")",
+      "Bash(wsl -d archlinux bash -c \"cd /mnt/c/Users/amazi/Desktop/automated-coding-agent-network && source myenv/bin/activate && export OLLAMA_API_BASE=http://172.21.48.1:11434 && python debug_aider_workflow.py 2>&1\")",
+      "Bash(wsl -d archlinux bash -c \"cd /mnt/c/Users/amazi/Desktop/automated-coding-agent-network/projects/amazon_repricer && rm -f ''(.py)'' a are Create files for implementing MULTIPLE package.json project Python the requirements.txt && ls -la | grep -E ''^-.*0 bytes'' | awk ''{print $NF}''\")",
+      "Bash(wsl -d archlinux bash -c \"cd /mnt/c/Users/amazi/Desktop/automated-coding-agent-network/projects/amazon_repricer && rm -f a are Create files for implementing MULTIPLE project Python the\")",
+      "Bash(wsl:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

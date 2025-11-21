@@ -1,0 +1,70 @@
+# Agent Configuration
+# Define specialized AI agents for different development tasks
+
+agents:
+  project_manager:
+    model: "deepseek-coder-v2:16b"
+    temperature: 0.7
+    max_tokens: 4096
+    role: "Requirements analyst and clarification specialist"
+    description: "Analyzes user requirements, asks clarifying questions, and creates detailed specifications"
+    tools:
+      - specification
+    fallback_model: null
+
+  architect:
+    model: "deepseek-coder-v2:16b"
+    temperature: 0.3
+    max_tokens: 8192
+    role: "System architecture and technical design expert"
+    description: "Designs system architecture, creates technical plans, and makes high-level design decisions"
+    tools:
+      - specification
+    fallback_model: null
+
+  coder:
+    model: "deepseek-coder-v2:16b"
+    temperature: 0.2
+    max_tokens: 4096
+    role: "Code implementation specialist"
+    description: "Implements features, writes code, and makes file modifications based on specifications"
+    tools:
+      - code_editor
+      - specification
+    fallback_model: null  # No fallback - always use local
+    use_aider: true  # Enable Aider for real code generation
+    aider_settings:
+      auto_commit: false  # Don't auto-commit to git
+      create_new_files: true  # Allow creating new files automatically
+
+  tester:
+    model: "deepseek-coder-v2:16b"
+    temperature: 0.3
+    max_tokens: 4096
+    role: "Testing and validation specialist"
+    description: "Creates tests, runs test suites, validates implementation against specifications"
+    tools:
+      - testing
+      - code_editor
+      - specification
+    fallback_model: null  # No fallback - always use local
+
+  reviewer:
+    model: "deepseek-coder-v2:16b"
+    temperature: 0.4
+    max_tokens: 6144
+    role: "Code quality and review specialist"
+    description: "Reviews code quality, checks adherence to specifications, and provides improvement suggestions"
+    tools:
+      - code_editor
+      - specification
+      - github
+    fallback_model: null
+
+# Agent behavior settings
+behavior:
+  max_retries: 3
+  retry_delay_seconds: 5
+  timeout_seconds: 300
+  enable_memory: true
+  verbose: true

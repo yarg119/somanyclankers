@@ -1,0 +1,157 @@
+# Workflow Configuration
+# Define multi-agent workflows for different task types
+
+workflows:
+  feature_implementation:
+    enabled: true
+    description: "Complete feature implementation from specification to PR"
+    agents:
+      - project_manager
+      - architect
+      - coder
+      - tester
+      - reviewer
+    steps:
+      - name: "Requirements Analysis"
+        agent: "project_manager"
+        tools: ["specification"]
+        output: "refined_specification"
+        description: "Analyze requirements and create detailed specification"
+
+      - name: "Technical Design"
+        agent: "architect"
+        tools: ["specification"]
+        input: "refined_specification"
+        output: "technical_plan"
+        description: "Design system architecture and implementation plan"
+
+      - name: "Task Breakdown"
+        agent: "architect"
+        tools: ["specification"]
+        input: "technical_plan"
+        output: "task_list"
+        description: "Break plan into atomic implementation tasks"
+
+      - name: "Implementation"
+        agent: "coder"
+        tools: ["code_editor", "specification"]
+        input: "task_list"
+        output: "code_changes"
+        description: "Implement features according to tasks"
+        parallel: true  # Can execute multiple tasks in parallel
+
+      - name: "Testing"
+        agent: "tester"
+        tools: ["testing", "code_editor"]
+        input: "code_changes"
+        output: "test_results"
+        description: "Create and run tests for implementation"
+
+      - name: "Validation"
+        agent: "tester"
+        tools: ["testing", "specification"]
+        input: "test_results"
+        output: "validation_report"
+        description: "Validate against specification requirements"
+
+      - name: "Review"
+        agent: "reviewer"
+        tools: ["code_editor", "specification"]
+        input: ["code_changes", "validation_report"]
+        output: "review_feedback"
+        description: "Review code quality and adherence to spec"
+
+      - name: "Create PR"
+        agent: "reviewer"
+        tools: ["github"]
+        input: ["code_changes", "review_feedback"]
+        output: "pull_request_url"
+        description: "Create pull request with summary"
+
+  bug_fix:
+    enabled: true
+    description: "Analyze and fix bugs with testing"
+    agents:
+      - project_manager
+      - coder
+      - tester
+      - reviewer
+    steps:
+      - name: "Issue Analysis"
+        agent: "project_manager"
+        tools: ["github", "specification"]
+        output: "bug_analysis"
+
+      - name: "Root Cause Investigation"
+        agent: "coder"
+        tools: ["code_editor"]
+        input: "bug_analysis"
+        output: "root_cause"
+
+      - name: "Fix Implementation"
+        agent: "coder"
+        tools: ["code_editor"]
+        input: "root_cause"
+        output: "bug_fix"
+
+      - name: "Testing"
+        agent: "tester"
+        tools: ["testing"]
+        input: "bug_fix"
+        output: "test_results"
+
+      - name: "Review and PR"
+        agent: "reviewer"
+        tools: ["code_editor", "github"]
+        input: ["bug_fix", "test_results"]
+        output: "pull_request_url"
+
+  refactoring:
+    enabled: true
+    description: "Refactor code while maintaining functionality"
+    agents:
+      - architect
+      - coder
+      - tester
+      - reviewer
+    steps:
+      - name: "Analysis"
+        agent: "architect"
+        tools: ["code_editor", "specification"]
+        output: "refactoring_plan"
+
+      - name: "Refactor"
+        agent: "coder"
+        tools: ["code_editor"]
+        input: "refactoring_plan"
+        output: "refactored_code"
+
+      - name: "Testing"
+        agent: "tester"
+        tools: ["testing"]
+        input: "refactored_code"
+        output: "test_results"
+
+      - name: "Review and PR"
+        agent: "reviewer"
+        tools: ["code_editor", "github"]
+        input: ["refactored_code", "test_results"]
+        output: "pull_request_url"
+
+  code_review:
+    enabled: true
+    description: "Review existing code for quality and improvements"
+    agents:
+      - reviewer
+    steps:
+      - name: "Review"
+        agent: "reviewer"
+        tools: ["code_editor", "specification"]
+        output: "review_report"
+
+# Workflow execution settings
+execution:
+  max_concurrent_workflows: 3
+  enable_parallel_tasks: true
+  checkpoint_interval: 5  # Save state every 5 steps
+  auto_rollback_on_failure: true

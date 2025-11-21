@@ -1,0 +1,16 @@
+# Aider model configuration for Ollama DeepSeek-Coder-V2
+# This file configures aider to work properly with local Ollama models
+
+- name: ollama_chat/deepseek-coder-v2:16b
+  edit_format: whole  # DeepSeek-Coder-V2 only supports "whole" format
+  use_repo_map: true
+  send_undo_reply: false
+  lazy: false
+  reminder: sys
+  examples_as_sys_msg: true
+  use_system_prompt: true
+  use_temperature: true
+  streaming: true
+  extra_params:
+    num_ctx: 16384  # Large context window (default 2k is too small)
+    temperature: 0.2
