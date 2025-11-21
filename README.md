@@ -1,1 +1,0 @@
-# My Application\n\nThis is a complete application built using Node.js, Express, and MongoDB.\n\n## Features\n- User management\n- CRUD operations\n- RESTful API\n\n## Installation\n1. Clone the repository\n2. Install dependencies: `npm install`\n3. Set up environment variables from `.env.example` to `.env`\n4. Run the application: `npm start`
